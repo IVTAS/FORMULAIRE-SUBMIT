@@ -3,183 +3,57 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Test FormSubmit - INVESTAS</title>
+    <title>Test Formulaire FormSubmit</title>
     <style>
       body {
         font-family: Arial, sans-serif;
-        background: #fff;
-        margin: 20px;
+        background: #f9f9f9;
+        padding: 30px;
       }
       form {
-        max-width: 600px;
-        margin: auto;
+        background: #fff;
         padding: 20px;
-        border: 1px solid #ccc;
         border-radius: 10px;
-        background: #f9f9f9;
-      }
-      label {
-        display: block;
-        margin-bottom: 10px;
-        font-size: 16px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       }
       input,
       textarea {
         width: 100%;
         padding: 8px;
-        margin-top: 4px;
+        margin: 5px 0 15px 0;
         border: 1px solid #ccc;
         border-radius: 5px;
       }
-      textarea {
-        resize: vertical;
-      }
       button {
         padding: 10px 20px;
-        margin-right: 10px;
         font-weight: bold;
         text-transform: uppercase;
         border: none;
-        border-radius: 8px;
+        border-radius: 5px;
         cursor: pointer;
-        font-size: 16px;
       }
-      .btn-valider-gauche {
-        color: #000;
-        background: #ffd700;
-      }
-      .btn-annuler-gauche {
+      button.submit-btn {
+        background: #28b463;
         color: #fff;
-        background: #ff0000;
       }
-      .btn-imprimer-gauche {
-        color: #0000ff;
-        background: #f0f0f0;
-      }
-      .btn-valider-milieu {
+      button.reset-btn {
+        background: #ff5733;
         color: #fff;
-        background: #006400;
-      }
-      .btn-annuler-milieu {
-        color: #fff;
-        background: #ff0000;
-      }
-      .btn-imprimer-milieu {
-        color: #0000ff;
-        background: #f0f0f0;
-      }
-      #msg-gauche {
-        margin-top: 10px;
-        font-weight: bold;
-        color: #ffd700;
-      }
-      #msg-milieu {
-        margin-top: 10px;
-        font-weight: bold;
-        color: #32cd32;
       }
     </style>
   </head>
   <body>
-    <h2 style="text-align: center; color: #006400">
-      Formulaire Test FormSubmit
-    </h2>
+    <h2>Formulaire Test FormSubmit</h2>
 
-    <!-- Formulaire Livre 1 Gauche -->
-    <form
-      id="form-gauche"
-      action="https://formsubmit.co/egied2024@gmail.com"
-      method="POST"
-      enctype="multipart/form-data"
-    >
-      <label>Nom:<br /><input type="text" name="nom" required /></label>
-      <label>Prénom:<br /><input type="text" name="prenom" required /></label>
-      <label>Email:<br /><input type="email" name="email" required /></label>
-      <label
-        >Fichier CNI/Passeport:<br /><input
-          type="file"
-          name="file"
-          accept=".pdf,.jpg,.jpeg,.png"
-          required
-      /></label>
-      <button type="submit" class="btn-valider-gauche">VALIDER</button>
-      <button type="reset" class="btn-annuler-gauche">ANNULER</button>
-      <button
-        type="button"
-        class="btn-imprimer-gauche"
-        onclick="window.print()"
-      >
-        IMPRIMER
-      </button>
-      <div id="msg-gauche"></div>
+    <form action="https://formsubmit.co/ton-email-ici" method="POST">
+      <label>Nom :</label>
+      <input type="text" name="name" required />
+      <label>Email :</label>
+      <input type="email" name="email" required />
+      <label>Message :</label>
+      <textarea name="message"></textarea>
+      <button type="submit" class="submit-btn">Valider</button>
+      <button type="reset" class="reset-btn">Annuler</button>
     </form>
-
-    <hr style="margin: 40px 0" />
-
-    <!-- Formulaire Livre 2 Milieu -->
-    <form
-      id="form-milieu"
-      action="https://formsubmit.co/egied2024@gmail.com"
-      method="POST"
-      enctype="multipart/form-data"
-    >
-      <label
-        >Nom du projet:<br /><input type="text" name="projet" required
-      /></label>
-      <label
-        >Montant estimatif:<br /><input type="text" name="montant" required
-      /></label>
-      <label>Email:<br /><input type="email" name="email" required /></label>
-      <button type="submit" class="btn-valider-milieu">VALIDER</button>
-      <button type="reset" class="btn-annuler-milieu">ANNULER</button>
-      <button
-        type="button"
-        class="btn-imprimer-milieu"
-        onclick="window.print()"
-      >
-        IMPRIMER
-      </button>
-      <div id="msg-milieu"></div>
-    </form>
-
-    <script>
-      // Fonction d'envoi et message confirmation
-      function sendFormData(formId, msgId) {
-        const form = document.getElementById(formId);
-        const msgBox = document.getElementById(msgId);
-        form.addEventListener("submit", function (e) {
-          e.preventDefault();
-          const inputs = form.querySelectorAll("[required]");
-          let valid = true;
-          inputs.forEach((input) => {
-            if (!input.value) {
-              input.style.border = "2px solid red";
-              valid = false;
-            } else {
-              input.style.border = "";
-            }
-          });
-          if (!valid)
-            return alert("Veuillez remplir tous les champs obligatoires.");
-
-          const data = new FormData(form);
-          fetch(form.action, { method: "POST", body: data })
-            .then((resp) => {
-              msgBox.textContent =
-                "Votre formulaire a été envoyé avec succès !";
-              form.reset();
-              setTimeout(() => {
-                msgBox.textContent = "";
-              }, 5000);
-            })
-            .catch((err) => {
-              alert("Erreur lors de l'envoi.");
-            });
-        });
-      }
-
-      sendFormData("form-gauche", "msg-gauche");
-      sendFormData("form-milieu", "msg-milieu");
-    </script>
   </body>
 </html>

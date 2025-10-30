@@ -3,47 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Test FormSubmit - Index</title>
-    <style>
-      body {
-        margin: 0;
-        padding: 20px;
-        font-family: Arial, sans-serif;
-        background: #f5f5f5;
-      }
-      #form-container {
-        max-width: 900px;
-        margin: auto;
-        background: #fff;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-      }
-    </style>
+    <title>Test FormSubmit Loader</title>
   </head>
   <body>
-    <h1 style="text-align: center; color: #006400">Test FormSubmit - Index</h1>
-    <div id="form-container">
-      <p style="text-align: center">
-        Le formulaire ci-dessous est chargé dynamiquement depuis
-        <code>test-form.html</code>.
-      </p>
-      <div id="form-content">Chargement du formulaire...</div>
-    </div>
+    <h1>Test Loader FormSubmit</h1>
+    <div id="form-container">Chargement du formulaire…</div>
 
     <script>
-      // Charger dynamiquement test-form.html dans la div #form-content
       fetch("test-form.html")
-        .then((response) => {
-          if (!response.ok)
-            throw new Error("Impossible de charger le formulaire.");
-          return response.text();
-        })
-        .then((html) => {
-          document.getElementById("form-content").innerHTML = html;
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("form-container").innerHTML = data;
         })
         .catch((err) => {
-          document.getElementById("form-content").textContent = err;
+          document.getElementById("form-container").innerHTML =
+            "Erreur lors du chargement du formulaire.";
+          console.error(err);
         });
     </script>
   </body>
