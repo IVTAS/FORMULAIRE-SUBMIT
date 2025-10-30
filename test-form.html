@@ -3,57 +3,43 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Test Formulaire FormSubmit</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        background: #f9f9f9;
-        padding: 30px;
-      }
-      form {
-        background: #fff;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      }
-      input,
-      textarea {
-        width: 100%;
-        padding: 8px;
-        margin: 5px 0 15px 0;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-      }
-      button {
-        padding: 10px 20px;
-        font-weight: bold;
-        text-transform: uppercase;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-      }
-      button.submit-btn {
-        background: #28b463;
-        color: #fff;
-      }
-      button.reset-btn {
-        background: #ff5733;
-        color: #fff;
-      }
-    </style>
+    <title>Test FormSubmit - INVESTAS</title>
   </head>
-  <body>
-    <h2>Formulaire Test FormSubmit</h2>
+  <body
+    style="font-family: Arial, sans-serif; text-align: center; margin-top: 60px"
+  >
+    <h2>🔎 Test de connexion avec FormSubmit</h2>
+    <p>Remplis ce petit formulaire pour tester l’activation de ton adresse :</p>
 
-    <form action="https://formsubmit.co/ton-email-ici" method="POST">
-      <label>Nom :</label>
-      <input type="text" name="name" required />
-      <label>Email :</label>
-      <input type="email" name="email" required />
-      <label>Message :</label>
-      <textarea name="message"></textarea>
-      <button type="submit" class="submit-btn">Valider</button>
-      <button type="reset" class="reset-btn">Annuler</button>
+    <form action="https://formsubmit.co/egied2024@gmail.com" method="POST">
+      <input
+        type="text"
+        name="name"
+        placeholder="Votre nom"
+        required
+        style="padding: 8px; width: 250px"
+      /><br /><br />
+      <input
+        type="email"
+        name="email"
+        placeholder="Votre adresse e-mail"
+        required
+        style="padding: 8px; width: 250px"
+      /><br /><br />
+      <button
+        type="submit"
+        style="
+          padding: 10px 20px;
+          font-weight: bold;
+          background: #28b463;
+          color: #fff;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+        "
+      >
+        ENVOYER
+      </button>
     </form>
   </body>
 </html>
